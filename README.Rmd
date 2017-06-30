@@ -30,7 +30,7 @@ abline(lm(y1 ~ x1, data = anscombe))
 
 ```{r, data_import, echo=TRUE}
 library (readr)
-df<- data.frame("analgesic (8).csv")
+df<- read.csv("analgesic (8).csv")
 ```
 ```{r,data_summary, echo=TRUE}
 dim(df)
@@ -38,9 +38,20 @@ colnames(df)
 head(df)
 tail(df)
 summary(df)
-
-
 ```
+```{r  data_tidy, echo=TRUE}
+library(tidyr)
+library(dplyr)
+
+
+df_1 <- df %>% gather(key = Measurements, value = Results, Measurement_1:Measurement_3) %>%
+  group_by(Measurements) %>%
+  summarise(mean = mean(Results)) %>%
+  ungroup()
+#print final 
+df_1
+```
+
 #chunk 1
 ## Null hypothesis
  * HO: The chicks weights is dependent on the feed
