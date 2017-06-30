@@ -30,7 +30,7 @@ abline(lm(y1 ~ x1, data = anscombe))
 
 ```{r, data_import, echo=TRUE}
 library (readr)
-df<- data.frame("analgesic.csv")
+df<- data.frame("analgesic (8).csv")
 ```
 ```{r,data_summary, echo=TRUE}
 dim(df)
@@ -39,17 +39,6 @@ head(df)
 tail(df)
 summary(df)
 
-
-```
-```{r, data_tidy, echo=TRUE}
-library(tidyr)
-library(dplyr)
-
-
-df_1 <- gather(df, key = Key, value = Value, Measurement_1: Measurement_3, -ID)
-df_2 <- group_by(df_1)
-
-summarise(df_2, mean = mean(Value))
 
 ```
 #chunk 1
